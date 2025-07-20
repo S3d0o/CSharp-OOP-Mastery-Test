@@ -1,0 +1,30 @@
+﻿
+
+namespace CSharp_OOP_Mastery_Test.Models
+{
+    internal abstract class Employee : Person
+    {
+        protected int employeeId; 
+        protected Employee(string fname , string lname , int age,int id) 
+            : base(fname,lname,age)
+        {
+            if (id<=0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Employee ID must be a positive integer.");
+            employeeId = id;
+        }
+        public int GetEmplyeeId()
+        {
+            return employeeId;
+        }
+        public abstract decimal CalculatePay(); // will be implemented in derived classes
+
+        public virtual void Describe() // will be overridden in derived classes
+        {
+            Console.WriteLine($"This person is an employee his details:\n " +
+                                    $"id : {employeeId}\n fullName :{FullName}");
+        }
+
+
+
+    }
+}
