@@ -6,10 +6,7 @@ namespace CSharp_OOP_Mastery_Test
     {
         static void Main()
         {
-             HourlyEmployee emp1 = new HourlyEmployee
-                ("John", "Doe", 30, 1, 20.5m, 40);
-            HourlyEmployee emp2 = new HourlyEmployee
-                ("saad", "mo", 23, 1, 22m, 50);
+             
         }
     }
 }

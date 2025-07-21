@@ -1,11 +1,14 @@
 ﻿
 using CSharp_OOP_Mastery_Test.Models;
 
+
 namespace CSharp_OOP_Mastery_Test.Collections
 {
-    internal class Team 
+    internal class Team
     {
         public int Count => _employees.Count();
+        public Project[] Projects { get; set; } = new Project[5]; // Array of projects with a capacity of 5
+
         private List<Employee> _employees;
         private Dictionary<int, Employee> employeeMap;
 
@@ -16,7 +19,7 @@ namespace CSharp_OOP_Mastery_Test.Collections
 
             if (initialEmployees == null)
                 throw new ArgumentNullException(nameof(initialEmployees), "Initial employees list cannot be null.");
-          
+
             foreach (Employee emp in initialEmployees)
             {
                 if (emp == null)
@@ -34,7 +37,7 @@ namespace CSharp_OOP_Mastery_Test.Collections
             get
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index),"Index cannot be a negative");
+                    throw new ArgumentOutOfRangeException(nameof(index), "Index cannot be a negative");
                 if (index >= _employees.Count)
                     throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
                 return _employees[index];
@@ -50,11 +53,11 @@ namespace CSharp_OOP_Mastery_Test.Collections
         }
         public Employee GetEmployeeById(int id)
         {
-           if(id <=0)
+            if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id), "Employee ID must be a positive integer.");
-           if(!employeeMap.ContainsKey(id))
+            if (!employeeMap.ContainsKey(id))
                 throw new KeyNotFoundException($"No employee found with ID {id}.");
-           return employeeMap[id];
+            return employeeMap[id];
         }
         public void RemoveEmployeeById(int id)
         {
@@ -64,7 +67,7 @@ namespace CSharp_OOP_Mastery_Test.Collections
                 throw new ArgumentOutOfRangeException(nameof(id), "Employee ID must be a positive integer.");
             if (!employeeMap.ContainsKey(id))
                 throw new KeyNotFoundException($"No employee found with ID {id}.");
-            employeeMap.Remove(id); 
+            employeeMap.Remove(id);
 
             #endregion
 
@@ -81,10 +84,26 @@ namespace CSharp_OOP_Mastery_Test.Collections
             else
             {
                 throw new KeyNotFoundException($"No employee found with ID {id}.");
-            } 
+            }
 
             #endregion
 
+        }
+        public void AddProject(Project pj)
+        {
+            if (string.IsNullOrEmpty(pj.Name))
+                throw new ArgumentException("Project name cannot be null or empty.", nameof(pj));
+            if (pj.DurationDays <= 0)
+                throw new ArgumentOutOfRangeException(nameof(pj), "Project duration must be a positive integer.");
+           
+            for (int i = 0; i < Projects.Length; i++)
+            {
+                if (Projects[i] is null)
+                {
+                    Projects[i] = pj;
+                    return;
+                }
+            }
         }
         public bool ContainsEmployee(int id) => employeeMap.ContainsKey(id);
         public void PrintTeamDetails()
@@ -109,9 +128,26 @@ namespace CSharp_OOP_Mastery_Test.Collections
             employeeMap.Clear();
         }
 
+        public void PrintProjects()
+        {
+            if (Projects == null || Projects.Length == 0)
+            {
+                Console.WriteLine("No projects available.");
+                throw new InvalidOperationException("No projects available in the team.");
+            }
+
+            Console.WriteLine("Projects in the team:");
+
+            foreach (Project p in Projects)
+            {
+                if (p.Name != null)
+                    Console.WriteLine(p.PrintInfo());
+            }
 
 
 
 
+
+        }
     }
 }
