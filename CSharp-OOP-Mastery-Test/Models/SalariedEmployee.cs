@@ -1,7 +1,9 @@
 ﻿
+using CSharp_OOP_Mastery_Test.Interfaces;
+
 namespace CSharp_OOP_Mastery_Test.Models
 {
-    internal class SalariedEmployee : Employee
+    internal class SalariedEmployee : Employee, ITaxable
     {
         public decimal hourly_rate { get; private set; }
         public int hours_worked { get; private set; }
@@ -22,7 +24,6 @@ namespace CSharp_OOP_Mastery_Test.Models
         {
             return hourly_rate * hours_worked;
         }
-
         public override void Describe()
         {
             Console.WriteLine($"This employee is a salaried employee with the following details:\n" +
@@ -31,6 +32,10 @@ namespace CSharp_OOP_Mastery_Test.Models
                               $"Hourly Rate: {hourly_rate:C}\n" +
                               $"Hours Worked: {hours_worked}\n" +
                               $"Total Pay: {CalculatePay():C}");
+        }
+        public decimal CalculateTax()
+        {
+            return CalculatePay() * 1.2m; // Assuming a flat tax rate of 20%
         }
     }
 }

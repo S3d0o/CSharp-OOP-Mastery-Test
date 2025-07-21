@@ -1,11 +1,9 @@
 ﻿
-
-
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using CSharp_OOP_Mastery_Test.Interfaces;
 
 namespace CSharp_OOP_Mastery_Test.Models
 {
-    internal class HourlyEmployee : Employee
+    internal class HourlyEmployee : Employee ,ITaxable
     {
         private decimal hourlyRate;
         private int hoursWorked;
@@ -33,6 +31,10 @@ namespace CSharp_OOP_Mastery_Test.Models
                               $"hourlyRate : {hourlyRate}\n hoursWorked :{hoursWorked}\n" +
                               $"Total Pay : {CalculatePay()}");
 
+        }
+        public decimal CalculateTax()
+        {
+            return CalculatePay() * 1.2m; // Assuming a flat tax rate of 20%
         }
     }
 }

@@ -2,9 +2,10 @@
 
 namespace CSharp_OOP_Mastery_Test.Models
 {
-    internal abstract class Employee : Person
+    internal abstract class Employee : Person, IComparable<Employee>
     {
-        protected int employeeId; 
+        public int employeeId;
+      
         protected Employee(string fname , string lname , int age,int id) 
             : base(fname,lname,age)
         {
@@ -12,7 +13,7 @@ namespace CSharp_OOP_Mastery_Test.Models
                 throw new ArgumentOutOfRangeException(nameof(id), "Employee ID must be a positive integer.");
             employeeId = id;
         }
-        public int GetEmplyeeId()
+        public int GetEmployeeId()
         {
             return employeeId;
         }
@@ -24,7 +25,9 @@ namespace CSharp_OOP_Mastery_Test.Models
                                     $"id : {employeeId}\n fullName :{FullName}");
         }
 
-
-
+        public int CompareTo(Employee? other)
+        {
+            return this.employeeId.CompareTo(other?.employeeId ?? 0);
+        }
     }
 }
