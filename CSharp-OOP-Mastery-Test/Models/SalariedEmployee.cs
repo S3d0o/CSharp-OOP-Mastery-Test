@@ -19,7 +19,14 @@ namespace CSharp_OOP_Mastery_Test.Models
             this.hourly_rate = hourly_rate;
             this.hours_worked = hours_worked;
         }
-        
+
+        public SalariedEmployee( SalariedEmployee other) //Copy constructor
+            : base(other.firstName, other.lastName, other.age, other.employeeId)
+        {
+            if (other is null) throw new ArgumentNullException(nameof(other));
+            hourly_rate = other.hourly_rate;
+            hours_worked = other.hours_worked;
+        }
         public override decimal CalculatePay()
         {
             return hourly_rate * hours_worked;
@@ -36,6 +43,10 @@ namespace CSharp_OOP_Mastery_Test.Models
         public decimal CalculateTax()
         {
             return CalculatePay() * 1.2m; // Assuming a flat tax rate of 20%
+        }
+        public override object Clone() // This performs a deep copy of the object
+        {
+            return new SalariedEmployee(this); // Uses the copy constructor for deep copy
         }
     }
 }

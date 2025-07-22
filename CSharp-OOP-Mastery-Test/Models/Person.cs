@@ -2,10 +2,10 @@
 {
     internal class Person
     {
-        private string firstName;
-        private string lastName = "";
+        protected private string firstName;
+        protected private string lastName = "";
         public string FullName => $"{firstName} {lastName}";
-        private int age = 0;
+        protected private int age = 0;
 
         public Person(string firstName, string lastName, int age)
         {

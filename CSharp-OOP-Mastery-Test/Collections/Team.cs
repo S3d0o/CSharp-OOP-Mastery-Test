@@ -4,7 +4,7 @@ using CSharp_OOP_Mastery_Test.Models;
 
 namespace CSharp_OOP_Mastery_Test.Collections
 {
-    internal class Team
+    internal class Team 
     {
         public int Count => _employees.Count();
         public Project[] Projects { get; set; } = new Project[5]; // Array of projects with a capacity of 5
@@ -30,6 +30,9 @@ namespace CSharp_OOP_Mastery_Test.Collections
                 AddEmployee(emp);
             }
         }
+
+        // Deep copy constructor
+     
 
         // indexer to fast acsess member of the team, ex: team[0]
         public Employee this[int index]
@@ -95,7 +98,7 @@ namespace CSharp_OOP_Mastery_Test.Collections
                 throw new ArgumentException("Project name cannot be null or empty.", nameof(pj));
             if (pj.DurationDays <= 0)
                 throw new ArgumentOutOfRangeException(nameof(pj), "Project duration must be a positive integer.");
-           
+
             for (int i = 0; i < Projects.Length; i++)
             {
                 if (Projects[i] is null)
@@ -127,7 +130,6 @@ namespace CSharp_OOP_Mastery_Test.Collections
             _employees.Clear();
             employeeMap.Clear();
         }
-
         public void PrintProjects()
         {
             if (Projects == null || Projects.Length == 0)
@@ -149,5 +151,11 @@ namespace CSharp_OOP_Mastery_Test.Collections
 
 
         }
+        public override string ToString()
+        {
+            return $"Team with {Count} employees and {Projects.Length} projects.";
+        }
+ 
+
     }
 }
