@@ -30,6 +30,20 @@ namespace CSharp_OOP_Mastery_Test.Collections
                 AddEmployee(emp);
             }
         }
+        public Team(List<Employee> initialEmployees,Project p)
+            :this(initialEmployees)
+        {
+            if (Projects[4] is not null)
+                throw new InvalidOperationException("Project array is full. Cannot add more projects.");
+            for (int i  = 0; i<Projects.Length; i++)
+            {
+                if (Projects[i] is null)
+                {
+                    Projects[i] = p;
+                    break; // Exit the loop once the project is added
+                }
+            }
+        }
         public Team(List<Employee> employees , Project[] projects , Dictionary<int,Employee> empMap )
         {
             _employees = employees;
@@ -144,8 +158,10 @@ namespace CSharp_OOP_Mastery_Test.Collections
 
             foreach (Project p in Projects)
             {
-                if (p.Name != null)
-                    Console.WriteLine(p.PrintInfo());
+                // If a project is null, we stop printing further projects
+                if (p?.Name == null) break;
+
+                Console.WriteLine(p.PrintInfo());
             }
 
 

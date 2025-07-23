@@ -3,7 +3,7 @@ namespace CSharp_OOP_Mastery_Test.Models
 {
     internal class Project : ICloneable
     {
-        public string Name { get; set; }
+        public string Name { get; set; } 
         public int DurationDays { get; set; }
         public Project(string name, int durationDays)
         {

@@ -48,6 +48,11 @@ namespace CSharp_OOP_Mastery_Test.Models
         {
             return new HourlyEmployee(this); //uses the copy constructor
         }
+
+        public HourlyEmployee CloneHE()
+        {
+            return new HourlyEmployee(this); // Uses the copy constructor for deep copy
+        }
     
     }
 }

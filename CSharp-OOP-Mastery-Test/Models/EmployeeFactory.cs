@@ -15,7 +15,7 @@ namespace CSharp_OOP_Mastery_Test.Models
             existingIds.Add(id);
             return new HourlyEmployee(fname, lname, age, id, rate, hours);
         }
-        internal static SalariedEmployee Salaried(string fname, string lname, int age, int id, decimal hourly_rate, int hours_worked)
+        internal static SalariedEmployee CreatedSalaried(string fname, string lname, int age, int id, decimal hourly_rate, int hours_worked)
         {
             if (existingIds.Contains(id))
                 throw new Exception("Duplicate employee ID");

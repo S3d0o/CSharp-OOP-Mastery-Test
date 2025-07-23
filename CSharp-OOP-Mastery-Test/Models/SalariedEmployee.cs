@@ -19,7 +19,6 @@ namespace CSharp_OOP_Mastery_Test.Models
             this.hourly_rate = hourly_rate;
             this.hours_worked = hours_worked;
         }
-
         public SalariedEmployee( SalariedEmployee other) //Copy constructor
             : base(other.firstName, other.lastName, other.age, other.employeeId)
         {
