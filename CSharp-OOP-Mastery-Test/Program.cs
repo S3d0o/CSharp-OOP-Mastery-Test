@@ -6,7 +6,7 @@ namespace CSharp_OOP_Mastery_Test
     {
         static void Main()
         {
-             
+                
         }
     }
 }

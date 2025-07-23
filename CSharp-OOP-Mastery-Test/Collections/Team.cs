@@ -4,7 +4,7 @@ using CSharp_OOP_Mastery_Test.Models;
 
 namespace CSharp_OOP_Mastery_Test.Collections
 {
-    internal class Team 
+    internal class Team
     {
         public int Count => _employees.Count();
         public Project[] Projects { get; set; } = new Project[5]; // Array of projects with a capacity of 5
@@ -30,10 +30,12 @@ namespace CSharp_OOP_Mastery_Test.Collections
                 AddEmployee(emp);
             }
         }
-
-        // Deep copy constructor
-     
-
+        public Team(List<Employee> employees , Project[] projects , Dictionary<int,Employee> empMap )
+        {
+            _employees = employees;
+            Projects = projects;
+            employeeMap = empMap;
+        }
         // indexer to fast acsess member of the team, ex: team[0]
         public Employee this[int index]
         {
@@ -155,7 +157,20 @@ namespace CSharp_OOP_Mastery_Test.Collections
         {
             return $"Team with {Count} employees and {Projects.Length} projects.";
         }
- 
+        public static Team operator +(Team t1, Team t2)
+        {
+            if (t1 is null )
+                throw new ArgumentNullException(nameof(t1), "Team cannot be null."); 
+            if (t2 is null )
+                throw new ArgumentNullException(nameof(t2), "Team cannot be null.");
+            var combinedEmployees = t1._employees.Concat(t2._employees).ToList();
+            var combinedProjects = t1.Projects.Concat(t2.Projects).ToArray();
+            var combinedEmployeeMap = t1.employeeMap.Concat(t2.employeeMap)
+                                      .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            return new Team(combinedEmployees, combinedProjects, combinedEmployeeMap);
+
+        }
 
     }
 }
