@@ -62,6 +62,16 @@ namespace CSharp_OOP_Mastery_Test.Collections
                 return _employees[index];
             }
         }
+        public int CountOfProjects()
+        {
+            int Count = 0;
+            for (int i = 0; i<Projects.Length;i++)
+            {
+                if (Projects[i] is not null)
+                    Count++;
+            }
+            return Count;
+        }
         public void AddEmployee(Employee emp)
         {
             if (employeeMap.ContainsKey(emp.employeeId))
@@ -171,7 +181,7 @@ namespace CSharp_OOP_Mastery_Test.Collections
         }
         public override string ToString()
         {
-            return $"Team with {Count} employees and {Projects.Length} projects.";
+            return $"Team with {Count} employees and {CountOfProjects()} projects.";
         }
         public static Team operator +(Team t1, Team t2)
         {
@@ -180,7 +190,21 @@ namespace CSharp_OOP_Mastery_Test.Collections
             if (t2 is null )
                 throw new ArgumentNullException(nameof(t2), "Team cannot be null.");
             var combinedEmployees = t1._employees.Concat(t2._employees).ToList();
-            var combinedProjects = t1.Projects.Concat(t2.Projects).ToArray();
+
+            // Combine projects (up to 10 slots)
+            var nonNullProjects = new List<Project>();
+
+            foreach (var p in t1.Projects)
+                if (p != null) nonNullProjects.Add(p);
+
+            foreach (var p in t2.Projects)
+                if (p != null) nonNullProjects.Add(p);
+
+            var combinedProjects = new Project[10];
+            for (int i = 0; i < nonNullProjects.Count && i < 10; i++)
+                combinedProjects[i] = nonNullProjects[i];
+
+
             var combinedEmployeeMap = t1.employeeMap.Concat(t2.employeeMap)
                                       .ToDictionary(pair => pair.Key, pair => pair.Value);
 

@@ -21,8 +21,8 @@ namespace CSharp_OOP_Mastery_Test
             HourlyEmployee he2 = new HourlyEmployee("Alice", "Johnson", 28, 4, 25, 35);
 
             // Recommended way: use EmployeeFactory to create employees
-            HourlyEmployee he3 = new(EmployeeFactory.CreateHourly("Kamel", "Ibrahim", 21, 1, 30, 70));
-            SalariedEmployee se3 = new(EmployeeFactory.CreatedSalaried("Mohamed", "Sayed", 11, 002, 100, 160));
+            HourlyEmployee he3 = new(EmployeeFactory.CreateHourly("Kamel", "Ibrahim", 21, 01, 30, 70));
+            SalariedEmployee se3 = new(EmployeeFactory.CreatedSalaried("Mohamed", "Sayed", 11, 02, 100, 160));
 
             he3.Describe();
             Console.WriteLine("------------------------------------------------");
@@ -101,6 +101,24 @@ namespace CSharp_OOP_Mastery_Test
             }
             Console.WriteLine("------------------------------------------------");
 
+            List<Employee> ee1 = new List<Employee>
+            {
+                new SalariedEmployee("Alice", "Brown", 35, 5, 60, 50),
+                new HourlyEmployee("Eve", "Green", 29, 8, 28, 50)
+            };
+            List<Employee> ee2 = new List<Employee>
+            {
+                new SalariedEmployee("Charlie", "Black", 32, 7, 65, 55),
+                new HourlyEmployee("Bob", "White", 40, 6, 30, 45)
+            };
+            Project pp1 = new Project("Project Delta", 60);
+            Project pp2 = new Project("Project Epsilon", 70);
+
+            Team ibra = new Team(ee1, pp1);
+            Team s3d = new Team(ee2, pp2);
+            Team combinedTeam2 = ibra + s3d;
+            Console.WriteLine("Combined Team 2 Details:");
+            Console.WriteLine(combinedTeam2);
 
 
         }
