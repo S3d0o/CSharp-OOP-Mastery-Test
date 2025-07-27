@@ -7,11 +7,10 @@ namespace CSharp_OOP_Mastery_Test.Collections
     internal class Team
     {
         public int Count => _employees.Count();
-        public Project[] Projects { get; set; } = new Project[5]; // Array of projects with a capacity of 5
+        private Project[] Projects { get; set; } = new Project[5]; // Array of projects with a capacity of 5
 
         private List<Employee> _employees;
         private Dictionary<int, Employee> employeeMap;
-
         public Team(List<Employee> initialEmployees)
         {
             _employees = new List<Employee>();
@@ -124,15 +123,19 @@ namespace CSharp_OOP_Mastery_Test.Collections
                 throw new ArgumentException("Project name cannot be null or empty.", nameof(pj));
             if (pj.DurationDays <= 0)
                 throw new ArgumentOutOfRangeException(nameof(pj), "Project duration must be a positive integer.");
-
+            bool IsFull = true;
             for (int i = 0; i < Projects.Length; i++)
             {
                 if (Projects[i] is null)
                 {
                     Projects[i] = pj;
+                    IsFull = false;
                     return;
                 }
             }
+            if (IsFull)
+                Console.WriteLine("the number of projects is full");
+                //throw new ArgumentOutOfRangeException(nameof(Projects), "the projects is full in this team");
         }
         public bool ContainsEmployee(int id) => employeeMap.ContainsKey(id);
         public void PrintTeamDetails()

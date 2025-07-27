@@ -1,7 +1,7 @@
 ﻿
 namespace CSharp_OOP_Mastery_Test.Models
 {
-    // It’s just a helper class that creates employees, like a factory in real life.
+    // just a helper class that creates employees, like a factory in real life.
     // It’s static because it’s a global service
     internal static class EmployeeFactory
     {

@@ -53,6 +53,11 @@ namespace CSharp_OOP_Mastery_Test
             // Add multiple projects to the team
             team1.AddProject(new Project("Project Alpha", 30));
             team1.AddProject(new Project("Project Beta", 45));
+            team1.AddProject(new Project("Project B2ta", 45));
+            team1.AddProject(new Project("Project Bet1a", 45));
+            team1.AddProject(new Project("Project Be3ta", 45));
+
+            
 
             team1.PrintProjects();
             Console.WriteLine("------------------------------------------------");
