@@ -5,7 +5,7 @@
         protected private string firstName;
         protected private string lastName = "";
         public string FullName => $"{firstName} {lastName}";
-        protected private int age = 0;
+        internal int age = 0;
 
         public Person(string firstName, string lastName, int age)
         {

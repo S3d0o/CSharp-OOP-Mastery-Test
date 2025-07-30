@@ -125,7 +125,10 @@ namespace CSharp_OOP_Mastery_Test
             Console.WriteLine("Combined Team 2 Details:");
             Console.WriteLine(combinedTeam2);
 
+            Console.WriteLine("------------------------------------------------");
 
+            employees2.Sort(new EmployeeAgeComparer());
+            employees2.ForEach(emp => emp.Describe());
         }
     }
 }
